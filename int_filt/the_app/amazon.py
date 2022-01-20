@@ -38,7 +38,7 @@ def search_amazon(query):
         product.imgurl = j[5:-1]
 
         price_tag = div.find('span', {'class':'a-offscreen'})
-        product.price = price_tag.text
+        product.price = price_tag
 
         data_asin = str(div).split()
         for j in data_asin:
@@ -93,3 +93,5 @@ def get_amazon_reviews(url):
             rev.reviewer = username
             rev.upvotes = upvotes
             review_list.append(rev)
+
+print(search_amazon("laptop"))
