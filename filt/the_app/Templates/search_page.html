@@ -1,0 +1,12 @@
+<!doctype html>
+<body>
+  <h1>
+    List of products
+  </h1>
+  {% for product in list %}
+            <li><a href="{{ product.url }}">{{ product.name }}</a></li>
+  {% endfor %}
+{% for a in f_list %}
+  <li><a href="{{ a }}">{{ a }}</a></li>
+{% endfor %}
+</body>
