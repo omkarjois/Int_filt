@@ -23,7 +23,6 @@ def search_amazon(query):
     response = requests.get(url, headers=headers).text
     soup = BeautifulSoup(response, features='lxml')
 
-    products = []
     cards = soup.find_all('div', {'data-component-type':'s-search-result'})
     for div in cards:
         product = Product(AMAZON_SOURCE)
@@ -94,5 +93,3 @@ def get_amazon_reviews(url):
             rev.reviewer = username
             rev.upvotes = upvotes
             review_list.append(rev)
-
-print(search_amazon('laptop'))

@@ -16,12 +16,12 @@ def search_page(request):
     f_list = []
     for i in a_list:
         u = g.convert_to_link(i.name)
-        page_url = g.website_list(u)
+        page_url = g.search_websites(u)
         f_list.append(page_url)
-        print(f_list)
+    print(f_list)
 
     context = {
         'list' : amazon.search_amazon("laptop"),
-        'f_list' : f_list
+        'flipkart' : f_list
     }
     return render(request, 'search_page.html', context)

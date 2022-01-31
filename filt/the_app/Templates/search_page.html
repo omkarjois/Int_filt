@@ -1,12 +1,14 @@
 <!doctype html>
 <body>
   <h1>
-    List of products
+    List of amazon products
   </h1>
   {% for product in list %}
             <li><a href="{{ product.url }}">{{ product.name }}</a></li>
   {% endfor %}
-{% for a in f_list %}
-  <li><a href="{{ a }}">{{ a }}</a></li>
+<br>
+<h1>Flipkart links</h1>
+{% for i in flipkart %}
+  <li><a href="{{ i }}"></a>{{ i }}</a></li>
 {% endfor %}
 </body>
