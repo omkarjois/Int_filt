@@ -1,7 +1,5 @@
 from django.db import models
 
-[AMAZON_SOURCE, FLIPKART_SOURCE,
-RELIANCE_SOURCE, CHROMA_SOURCE] = [1<<i for i in range(4)]
 
 class Product:
 	"""Stores information about a product and where we found it."""

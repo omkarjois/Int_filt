@@ -4,6 +4,7 @@ from sys import path as syspath
 syspath.append('/home/omkar/omkar/Int_filt/filt/the_app')
 import amazon
 import google_1 as g
+import flipkart
 # Create your views here.
 
 query = "laptop"
@@ -13,15 +14,19 @@ def home(request):
 
 def search_page(request):
     a_list = amazon.search_amazon(query)
-    f_list = []
+    product_list = []
     for i in a_list:
-        u = g.convert_to_link(i.name)
-        page_url = g.search_websites(u)
-        f_list.append(page_url)
-    print(f_list)
+        link = g.convert_to_link(i.name)
+        print(link)
+        f_link = g.search_websites(link)
+        if f_link != None:
+            f_details = flipkart.get_flipkart_details(f_link)
+            prod = [i, f_details]
+        else:
+            prod = [i]
+        product_list.append(prod)
 
     context = {
-        'list' : amazon.search_amazon("laptop"),
-        'flipkart' : f_list
-    }
+        'list' : product_list
+        }
     return render(request, 'search_page.html', context)

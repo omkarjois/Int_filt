@@ -3,12 +3,11 @@
   <h1>
     List of amazon products
   </h1>
-  {% for product in list %}
-            <li><a href="{{ product.url }}">{{ product.name }}</a></li>
+  {% for i in list %}
+            <li>{% for j in i %}
+              <a href="{{ j.url }}">{{ j.name }}</a> <p>{{ j.price }}{{ j.source }}</p>
+              <br>
+              
+                {% endfor %}
+            </li>
   {% endfor %}
-<br>
-<h1>Flipkart links</h1>
-{% for i in flipkart %}
-  <li><a href="{{ i }}"></a>{{ i }}</a></li>
-{% endfor %}
-</body>

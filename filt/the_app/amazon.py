@@ -1,8 +1,9 @@
+from webbrowser import get
 import requests
 from bs4 import BeautifulSoup
 from sys import path as syspath
 syspath.append('..')
-from models import Product, Review, AMAZON_SOURCE
+from models import Product, Review
 
 review_list = []
 
@@ -25,7 +26,7 @@ def search_amazon(query):
 
     cards = soup.find_all('div', {'data-component-type':'s-search-result'})
     for div in cards:
-        product = Product(AMAZON_SOURCE)
+        product = Product('amazon')
 
         product.name = div.find('span', {'class':'a-size-medium a-color-base a-text-normal'}).text
         #'class':'a-size-base a-color-base a-text-normal', 'class':'a-size-base-plus a-color-base a-text-normal'}))
@@ -36,7 +37,7 @@ def search_amazon(query):
             if 'src=' in j: break
         product.imgurl = j[5:-1]
 
-        price_tag = div.find('span', {'class':'a-offscreen'})
+        price_tag = div.find('span', {'class':'a-offscreen'}).text
         product.price = price_tag
 
         data_asin = str(div).split()
@@ -93,3 +94,5 @@ def get_amazon_reviews(url):
             rev.reviewer = username
             rev.upvotes = upvotes
             review_list.append(rev)
+
+search_amazon('laptop')
